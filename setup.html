@@ -60,7 +60,7 @@
 									</p>
 									<h3>1. Install operating system (Ubuntu 18.04 LTS)</h3>
 									<div class="box">
-										<p> <b><a href = "https://www.ubuntu.com/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> Download and install Ubuntu desktop (18.04 LTS)</a></b>
+										<p> Download and install <b><a href = "https://www.ubuntu.com/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> Ubuntu desktop (18.04 LTS)</a></b>
 										(only Ubuntu 18.04 LTS is compatible with ROS Melodic at the moment) </p>
 									</div>	
 
@@ -92,16 +92,16 @@ tar race_framework_v1.gz -C ~/
 									</p>
 									
 									<pre><code>
-##Add ROS catkin_ws and rosbuild_ws workspaces
+#Add ROS catkin_ws and rosbuild_ws workspaces
 source /opt/ros/melodic/setup.bash
 export LD_LIBRARY_PATH=/opt/ros/melodic/lib:/opt/ros/melodic/include/moveit:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export ROS_PACKAGE_PATH=/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/catkin_ws/:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/rosbuild_ws/:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/moveit_ws/:/opt/ros/melodic/include:$ROS_PACKAGE_PATH
+export ROS_PACKAGE_PATH=/home/cognitiverobotics/catkin_ws/:/home/cognitiverobotics/rosbuild_ws/:/opt/ros/melodic/include/:$ROS_PACKAGE_PATH
 export ROBOT=sim
 export PATH=~/bin:$PATH
 
 #The following line allows rosbuild packages to be depended to catkin packages
 #https://answers.ros.org/question/105231/how-to-make-rosbuild-package-depend-on-catkin-package/
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/catkin_ws/devel/lib/pkgconfig:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/moveit_ws/devel/lib/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/cognitiverobotics/catkin_ws/devel/lib/pkgconfig:/home/cognitiverobotics/moveit_ws/devel/lib/pkgconfig
 export PATH="$PATH:$HOME/bin"
 export PATH=/usr/lib/python2.7/:$PATH
 
@@ -110,6 +110,7 @@ export LC_NUMERIC="en_US.UTF-8"
 
 #This line forces the system to use python2 by default since the ROS works based on python2
 alias python='/usr/bin/python2.7'  
+											 
 									</code></pre>
 									<hr class="major" />
 									<!-- ******************************************************** -->
