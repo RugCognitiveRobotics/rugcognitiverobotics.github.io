@@ -1,0 +1,357 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Cognitive Robotics Course</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="http://www.ai.rug.nl/hkasaei" target="_blank" class="logo"><strong>Cognitive Robotics Course (WMAI19001)</strong> - Hamidreza Kasaei </a>
+								<ul class="icons">
+									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+								<section>
+									
+									
+									
+									<header class="main">
+										<h1 style="text-align: center;"> Project 1 : Interactive open-ended learning </br>for 3D object recognition </h1>
+									</header>
+									<span class="image main"><img src="images/project1.jpg" alt="" /></span>
+									<p style="text-align: center; color: rgb(0, 0, 255);font-size: 15pt"> Fig.1 The sequence of snapshots showing the RACE perception 
+										system performing object recognition and pose estimation and two human users interacting with the system. </br></br>
+										<a href="https://www.dropbox.com/s/6b0ibgcqor5j5eq/project1.pdf?dl=1" class="button">Download the pdf version</a>
+									</p>
+
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<section>
+										<header class="major">
+											<h2>Assignment overview	</h2>
+										</header>
+									
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 
+											Cognitive science revealed that humans learn to recognize object categories ceaselessly over time. This ability allows them to adapt 
+											to new environments, by enhancing their knowledge from the accumulation of experiences and the conceptualization of new object categories. 
+											Taking this theory as an inspiration, we seek to create an interactive object recognition system that can learn 3D object categories in 
+											an open-ended fashion. In this project, “open-ended” implies that the set of categories to be learned is not known in advance. 
+											The training instances are extracted from on-line experiences of a robot, and thus become gradually available over time, rather than 
+											being completely available at the beginning of the learning process. 
+									</p>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 
+											Your goal for this assignment is to implement an interactive open-ended learning approach for 3D object recognition. 
+											In open-ended domains the set of categories to be learned is not predefined, therefore, it is not feasible to pre-program all necessary 
+											object categories for a robot. Instead, the robot should learn from online experiences, supported in the feedback from human teachers. 
+											This way, it is expected that the competence of the robot increases over time. 
+									</p> 
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 										
+											We break this assignment down into two parts. The first part is implementing an offline 3D object recognition system, which takes an 
+											object view as input and produces as output the category label (e.g., apple, mug, fork, etc). The second part is testing your approach 
+											in an online fashion by integrating your code into the RACE framework. Bear in mind that you should implement a method suitable for
+											both offline and open-ended scenarios. To make your life easier, we offer a set of template codes for each assignment. In particular, 
+											students are provided with stub of the code and are expected to complete it. Please carefully read the detailed description of project below.
+									</p> 
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 										
+											<b style="color: rgb(255, 0, 0);"> * Note:</b> If you are not familiar with the concept of ROS, please follow the 
+											<a href = "http://wiki.ros.org/ROS/Tutorials#Beginner_Level" target="_blank" style="color: rgb(0,0, 255);">beginner level of ROS Tutorials</a>.
+											For all student, going over all basic beginner level tutorials is strongly recommended. 
+											
+									</p> 
+									<hr class="major" />
+									<hr class="major" />
+
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<h2>Policies </h2>
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 										
+
+											For this project, feel free to collaborate on solving the problem but please write your code individually. In particular, please do
+											 not copy code from other students.
+									</b> 
+								</section>
+
+									<hr class="major" />
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<section>
+										<header class="major">
+											<h2>Part I: Check your approach in an offline setting (50%) </h2>
+										</header>
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 										
+
+											To examine the performance of the proposed object recognition approach, students should use the provided K-fold cross-validation procedure. 
+											K-fold cross-validation is one of the most widely used methods for estimating the generalization performance of a learning algorithm. 
+											In this case, the k folds are randomly created by dividing the dataset into k equal sized subsets, where each subset contains examples 
+											from all the categories. In each iteration, a single fold is used for testing, and the remaining folds are used as training data. 
+											For k-fold cross-validation, we set K to 10, as is generally recommended in literature. This type of evaluation is not only useful 
+											for parameter tuning, but it also provides straightforward results for comparing the different approaches among themselves and possibly 
+											with other approaches described in the literature.
+										</b> 
+										
+										<h2 style="text-align: justify; color: rgb(18, 126, 18);"> What we offer for this part of the assignment: </h2>
+											 
+											<ul style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+												<li>A ROS based CPP code for 10 fold-cross validation</li>
+												<li>Template cpp-based codes for both object representation, learning and recognition modules</li>
+											</ul>
+
+										<h2 style="text-align: justify; color: rgb(18, 126, 18);"> Your tasks in this part of the assignment:  </h2>
+											 
+											<ul style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+												<li>Develop an optimize 3D object recognition algorithm capable of working in both offline and open-ended scenarios. 
+													You could think about the following options:</li>
+													<ol style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+															<li>Instance Based Learning (IBL) approaches</li>
+															<li>Bayesian-based learning approaches	</li>
+															<li>Deep learning based object representation + IBL	</li>
+															<li>Deep learning based object representation + IBL	</li>
+															<li>One-class SVM (but it is computationally expensive)</li>
+															<li>etc.</li>
+													</ol>
+												<li>Use a small-scaled RGB-D dataset for evaluating the performances of your approach. Both <b style="color: rgb(0, 0, 255);">ModelNet10</b> and <b style="color: rgb(0, 0, 255);">Restaurant Object </b>
+													datasets have a small number of classes with significant intra-class variation, which are suitable for performing extensive
+													sets of offline experiments and parameter tuning. </li>
+											</ul>
+										</p>
+											<hr class="major" />
+										</section>
+											<!-- ******************************************************** -->
+											<!-- ******************************************************** -->
+											<!-- ******************************************************** -->
+										<section>
+											<header class="major">
+												<h2>Part II: Test your approach in open-ended scenarios (50%) </h2>
+											</header>
+											<!-- ******************************************************** -->
+											<!-- ******************************************************** -->
+											<!-- ******************************************************** -->
+											<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 										
+		
+												The off-line evaluation methodologies are not well suited to evaluate open-ended learning systems, because they do not abide to 
+												the simultaneous nature of learning and recognition and also those methodologies imply that the set of categories must be predefined.
+												We therefore adopted a teaching protocol designed for experimental evaluation in open-ended learning.
+
+											</p> 
+
+											<h2>A. Teaching protocol and simulated teacher</h2>
+											<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 	
+												The idea is to emulate the interactions of a recognition system with the surrounding environment over long periods of time in a 
+												single context scenario (office, kitchen, etc.). The teacher follows a teaching protocol and interacts with the learning agent using 
+												three basic actions: 
+
+												<ul style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+													<li><b style="color: rgb(0, 0, 255);">Teach:</b> used for introducing a new object category; </li>
+													<li><b style="color: rgb(0, 0, 255);">Ask:</b> used to ask the system what is the category of a given object view;</li>
+													<li><b style="color: rgb(0, 0, 255);">Correct:</b> used for providing corrective feedback in case of misclassification.</li>												
+												</ul>
+											</p>
+											<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 	
+ 
+												Teaching protocols determines which examples are used for training the algorithm, and which are used to test the algorithm.
+												 The protocol can be followed by a human teacher. However, replacing a human teacher with a simulated one makes it possible to 
+												 conduct systematic, consistent and reproducible experiments for different approaches. It allows the possibility to perform multiple 
+												 experiments and explore different experimental conditions in a fraction of time a human would take to carry out the same task.
+												  We therefore developed a simulated teacher to follow the protocol and autonomously interact with the system. For this purpose, 
+												  the simulated teacher is connected to a large database of labelled object views. The complete process is summarized in <b>Algorithm 1 </b>
+												  and the overall system architecture is depicted in <b>Fig. 2 </b>.
+
+												  <span class="image main"><img src="images/TP.jpg" alt="" /></span>
+
+												  The idea is that the simulated teacher repeatedly picks unseen object views from the currently known categories and presents them 
+												  to the agent for testing. Inside the learning agent, the object view is recorded in the <b style="color: rgb(0, 0, 255);">Perceptual Memory</b> if it is marked as a 
+												  training sample (i.e. whenever the teacher uses teach or correct instructions), otherwise it is dispatched to the 
+												  <b style="color: rgb(0, 0, 255);">Object Recognition</b> module. The simulated teacher continuously estimates the recognition performance of the agent using a 
+												  sliding window of size 3n iterations, where n is the number of categories that have already been introduced. If k, the number of
+												   iterations since the last time a new category was introduced, is less than 3n, all results are used. In case this performance 
+												   exceeds a given classification threshold (t = 0.67, meaning accuracy is at least twice the error rate), the teacher introduces
+												   a new object category by presenting three randomly selected objects’ views. In this way, the agent begins with zero knowledge 
+												   and the training instances become gradually available according to the teaching protocol. 
+												   <span class="image main"><img src="images/SU.jpg" alt="" /></span>
+												   <p style="text-align: center; color: rgb(0, 0, 255);font-size: 15pt"> Fig.2 Interaction between the simulated teacher and the learning agent.</p>
+
+												  
+											</p>
+											<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 	
+
+												<b style="color: rgb(0, 0, 255);">Breakpoint:</b> In case the agent can not reach the classification threshold after a certain number of iterations (i.e. 100 iterations),
+												the simulated teacher can infer that the agent is no longer able to learn more categories and therefore, terminates the experiment. 
+												It is possible that the agent learns all existing categories before reaching the breaking point. In such a case, it is not possible 
+												to continue the protocol, and the experiment is halted. In your report, this should be shown by the stopping condition, 
+												“lack of data’’. 
+											</p>
+
+											<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 	
+											<b style="color: rgb(0, 0, 255);">Dataset: </b> In this experiment, one of the largest available 3D object datasets, 
+												namely Washington RGB-D Object Dataset is used. It consists of 250,000 views of 300 objects and the objects are categorized 
+												into 51 categories. </b>
+											</p>
+
+											<h2 style="text-align: justify; color: rgb(18, 126, 18);"> What we offer for this part of the assignment: </h2>
+												
+											<ul style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+												<li>Provide a step-by-step guide to integrate your code into the simulated teacher test.</li>
+												<li>Provide the simulated teacher code to assess the performance of your code in open-ended settings.</li>
+												<li>Visualize the progress of the agent including the following items: </li>
+												<ul style="text-align: justify; font-size: 18pt">
+													<li>Protocol Accuracy vs. Number of Iterations 	</li>
+													<li>Number of Learned Category vs. Number of Iterations</li>
+													<li>Global Classification Accuracy vs number of Learned Categories</li>
+												</ul>
+											</ul>
+
+									<h2 style="text-align: justify; color: rgb(18, 126, 18);"> Your tasks in this part of the assignment:  </h2>
+										 
+										<ul style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+											<li>Develop an optimize 3D object recognition algorithm capable of working in both offline and open-ended scenarios. 
+												You could think about the following options:</li>
+												<ol style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt">
+														<li>Integrate your learning and recognition code into the simulated teacher test.</li>
+														<li>Since the order in which categories are introduced may have an effect on the performance 
+															of the system, you have to perform 10 experiments and report the avg+std. </li>
+														<li>Discuss the progress/behavior of the agent. </li>														
+												</ol>
+											<li>Use a small-scaled RGB-D dataset for evaluating the performances of your approach. Both <b style="color: rgb(0, 0, 255);">ModelNet10</b> and <b style="color: rgb(0, 0, 255);">Restaurant Object </b>
+												datasets have a small number of classes with significant intra-class variation, which are suitable for performing extensive
+												sets of offline experiments and parameter tuning. </li>
+										</ul>
+										
+
+									<h2 style="text-align: justify; color: rgb(18, 126, 18);">Extra credit:</h2>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 
+										We will evaluate your object recognition approach using the same simulated teacher code. We will add <b style="color: rgb(0, 0, 255);">0.5</b> to final grade of the student
+										 who achieves the highest performance, <b style="color: rgb(0, 0, 255);"> 0.4</b> to the student who achieves second place, and <b style="color: rgb(0, 0, 255);">0.3</b> to the student who achieves
+										  third place. We will compute the performance of your algorithm ourselves (code that does not run will be disqualified from the contest). 
+										  This reward is designed to encourage you to experiment with different algorithms and hyperparameter settings to obtain the best performance.										  
+									</p>
+									<h2>B. Test your approach in a real-world scenario</h2>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 	
+											For this part of the project, a 3.5 minutes session has been recorded, where several users interacted with the RACE object perception 
+											system as shown in the above figure. During this session, users present objects to the system and provide their respective category
+											 labels. All raw data from the RGB-D sensor has been recorded in a rosbag, which can be used to test different approaches. For this part,
+											  we provide a step-by-step guide to integrate your code into the RACE framework and how to run the system. This an essential part 
+											  of this assignment, and you will need this part in the second practical project. You should take a set of screenshots/videos of 
+											  the output of your algorithm in the real-world scenario and use it in your project report.
+ 										
+									</p>
+									
+								</section>
+								<hr class="major" />
+
+								<section>
+									<header class="major">
+										<h2>Submission</h2>
+									</header>	
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 18pt"> 	
+
+										At the end of each practical assignment a report 
+										(i.e., two pages <a href = "https://www.ieee.org/conferences/publishing/templates.html" target="_blank" style="color: rgb(0,0, 255);">IEEE conference format)</a> 
+										has to be delivered.  This practical assignment prepare students to do the final course project.  Submit your assignment in a zip file named yourname_project1.zip. 
+										Please include your cleaned source code for both of part 1 and part 2. Please only submit these files and do not zip up the entire system and datest. 
+									</br>
+
+									</p>
+									
+								</section>
+
+																		
+								</section>
+
+						</div>
+					</div>
+<!-- Sidebar -->
+<div id="sidebar">
+		<div class="inner">
+
+			<!-- Menu -->
+				<nav id="menu">
+					<header class="major">
+						<h2>Menu</h2>
+					</header>
+					
+					<ul>
+						
+						<li><a href="https://rugcognitiverobotics.github.io/#banner">Course Description</a></li>
+						<li><a href="https://rugcognitiverobotics.github.io/#LO">Learning Objectives</a></li>
+						<li><a href="https://rugcognitiverobotics.github.io/#PQ">Prerequisites</a></li>
+						<li><a href="https://rugcognitiverobotics.github.io/#CF">Class Format</a></li>
+						<li><a href="https://rugcognitiverobotics.github.io/#LT">List of Topic</a></li>
+						<li><a href="https://rugcognitiverobotics.github.io/#CWQP">Coursework and Grading Policies</a></li>
+					</ul>
+				</nav>
+
+
+			<!-- Section -->
+				<section>
+					<header class="major">
+						<h2>Get in touch</h2>
+					</header>
+					<p> <b style="color: rgb(255, 0, 0);">Hamidreza Kasaei</b> (Course Coordinator)</p>
+					<ul class="contact">
+						<li class="fa-envelope-o">hamidreza.kasaei@rug.nl</li>
+						<li class="fa-dribbble"><a href="http://www.ai.rug.nl/hkasaei" target="_blank"> www.ai.rug.nl/hkasaei</a></li>
+						<li class="fa-home">Office #350, Bernoulliborg building, University of Groningen.</li>
+					</ul>
+					<p> <b style="color: rgb(255, 0, 0);">TBD</b> (Teaching Assistant)</p>
+					<ul class="contact">
+						<li class="fa-envelope-o">TBD@student.rug.nl</li>
+						<li class="fa-envelope-o">cognitiverobotic@gmail.com</li>
+						
+					<!--<li class="fa-home"><a href="#">Office #350, Bernoulliborg building, University of Groningen. </a></li>-->
+					</ul>
+				</section>
+
+		</div>
+	</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
