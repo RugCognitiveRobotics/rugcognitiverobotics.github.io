@@ -64,14 +64,60 @@
 										(only Ubuntu 18.04 LTS is compatible with ROS Melodic at the moment) </p>
 									</div>	
 
+									<h3>2. Install NVIDIA driver, CUDA 10, TensorFlow, Keras (Ubuntu 18.04 LTS)</h3>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										If you have already installed NVIDIA, CUDA and tensorFlow and Keras, skip this step!!!
+									</p>
+									<pre>
+										<code>
+<b style="color: rgb(0, 0, 255);"> ##### Tensorflow-gpu installation</b>
+sudo apt update 
+sudo apt install python-pip
+pip install tensorflow-gpu
+
+
+<b style="color: rgb(0, 0, 255);"> ##### add NVIDIA package repositories</b>
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+sudo apt-get update
+wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+sudo apt-get update
+
+<b style="color: rgb(0, 0, 255);"> ##### Install NVIDIA driver</b>
+
+sudo apt-get install --no-install-recommends nvidia-driver-418
+
+<b style="color: rgb(255, 0, 0);"> ##### Reboot. Check that GPUs are visible using the command: </b> nvidia-smi
+
+<b style="color: rgb(0, 0, 255);"> ##### Install development and runtime libraries (~4GB)</b>
+
+sudo apt-get install --no-install-recommends \
+	cuda-10-0 \
+	libcudnn7=7.6.0.64-1+cuda10.0  \
+	libcudnn7-dev=7.6.0.64-1+cuda10.0
+
+<b style="color: rgb(0, 0, 255);"> ##### Install TensorRT. Requires that libcudnn7 is installed above.</b>
+
+sudo apt-get update && \
+		&& sudo apt-get install -y --no-install-recommends libnvinfer-dev
+
+<b style="color: rgb(0, 0, 255);"> ##### Install Keras</b>
+
+pip install pytictoc
+sudo pip install keras
+										</code>
+									</pre>
+
 									<h3>2. Download ROS packages</h3>
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
-										Download and unzip the <b style="color: rgb(0, 0, 255);"> catkin_ws</b> and  <b style="color: rgb(0, 0, 255);"> rosbuild_ws </b> 
-										packages and unzip them into your  <b style="color: rgb(0, 0, 255);">/home </b>directory:
+										Download <b style="color: rgb(0, 0, 255);">system_setup.tar.xz</b> file from Nestor and unzip it in your 
+										<b style="color: rgb(0, 0, 255);">/home </b>directory:
 									</p>
 <pre><code>
-wget link_to_download_catkin_ws_and_rosbuild_ws <b style="color: rgb(0, 0, 255);"> (TBD)</b> 
-tar race_framework_v1.gz -C ~/
+tar xf system_setup.tar.xz -C ~/
 </code></pre>
 
 									<h3>3. Setting up environment</h3>
@@ -80,10 +126,10 @@ tar race_framework_v1.gz -C ~/
 										
 										Open a terminal and type:
 									</p>
-									<div class="box">
-										<p> gedit   ~/.bashrc</p>
-									</div>	
-								
+<pre><code>
+gedit   ~/.bashrc
+</code></pre>
+																	
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
 										afterwards, copy and paste the following lines at the end of your .bashrc file.
 										This way, the ROS environment variables are added to your bash session every time a new shell is launched.
@@ -92,17 +138,19 @@ tar race_framework_v1.gz -C ~/
 									</p>
 									
 									<pre><code>
+
 #Add ROS catkin_ws and rosbuild_ws workspaces
 source /opt/ros/melodic/setup.bash
 export LD_LIBRARY_PATH=/opt/ros/melodic/lib:/opt/ros/melodic/include/moveit:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export ROS_PACKAGE_PATH=/home/cognitiverobotics/catkin_ws/:/home/cognitiverobotics/rosbuild_ws/:/opt/ros/melodic/include/:$ROS_PACKAGE_PATH
+export ROS_PACKAGE_PATH=/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/catkin_ws:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/student_ws:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/rosbuild_ws:/opt/ros/melodic/include:${ROS_PACKAGE_PATH}
+
 export ROBOT=sim
 export PATH=~/bin:$PATH
 
 #The following line allows rosbuild packages to be depended to catkin packages
 #https://answers.ros.org/question/105231/how-to-make-rosbuild-package-depend-on-catkin-package/
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/cognitiverobotics/catkin_ws/devel/lib/pkgconfig:/home/cognitiverobotics/moveit_ws/devel/lib/pkgconfig
-export PATH="$PATH:$HOME/bin"
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/catkin_ws/devel/lib/pkgconfig:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/moveit_ws/devel/lib/pkgconfig
+#export PATH="$PATH:$HOME/bin"
 export PATH=/usr/lib/python2.7/:$PATH
 
 #This line is necessary for MoveIt!, otherwise the robot seems broken
@@ -112,6 +160,12 @@ export LC_NUMERIC="en_US.UTF-8"
 alias python='/usr/bin/python2.7'  
 											 
 									</code></pre>
+
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+											Then close all your terminal.
+										</p>
+
 									<hr class="major" />
 									<!-- ******************************************************** -->
 									<!-- ******************************************************** -->
@@ -121,12 +175,12 @@ alias python='/usr/bin/python2.7'
 									<!-- ******************************************************** -->
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
 										Installing the RACE framework is a very simple process and takes less than ten minutes to complete.  We provide three methods 
-										to install the RACE framework.  
+										to install the RACE framework. We strongly recommend you to use the bach script. 
 									</p>
 
 									<h3 style="color:  rgb(255, 0, 0)"> Method 1: Install using bash script (Recommended) </h3>
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
-										First, download <a href = "" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> setup_race_framework.sh</a> script.
+										First, download <a href = "" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> setup_race_framework.sh</a> script from Nestor and move it to your <b style="color: rgb(0, 0, 255);">/home </b>directory.
 									</br>Then, open a terminal, give appropriate permissions to the script and finally run it: </p>		
 <pre><code>
 chmod 777 setup_race_framework.sh 
@@ -141,7 +195,7 @@ chmod 777 setup_race_framework.sh
 								<!-- ******************************************************** -->
 								<!-- ******************************************************** -->
 
-								<h3 style="color:  rgb(255, 0, 0)"> Method 2: Step-by-step instructions </h3>
+								<h3 style="color:  rgb(255, 0, 0)"> Method 2: Step-by-step instructions [not tested yet]</h3>
 
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
 										Following are step-by-step instructions for installing  the RACE cognitive robtoic framewrok.
@@ -219,7 +273,7 @@ make -j4
 
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
 										In general, virtual machines are much slower than the primary operating system and therefore should be considered as the last option in our 
-										course, or just use it to get familiar with the framework. You can download the virtual machine <b style="color: rgb(0, 0, 255);">here [TBD]</b>
+										course, or just use it to get familiar with the framework. You can catch me up during lab sessions to copy the virtual machine from my external hard disc.
 									</p>
 									
 									<hr class="major" />
