@@ -35,12 +35,13 @@
 
 							<!-- Content -->
 								<section id="setup">
-																	
+									<div class="content">
+					
 									<span class="image main"><img src="images/banner.jpg" alt="" /></span>
 
 									<header class="main">
-											<h1>Setting up your workspace </h1>
-										</header>
+										<h1>Setting up your workspace </h1>
+									</header>
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
 										Before installing, have a glance through this guide and take note of the details for your platform. 
 										We install and test RACE cognitive robotic framework on 
@@ -66,8 +67,7 @@
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
 										If you have already installed NVIDIA, CUDA and tensorFlow and Keras, skip this step!!!
 									</p>
-									<pre>
-										<code>
+<pre><code>
 <b style="color: rgb(0, 0, 255);"> ##### Tensorflow-gpu installation</b>
 sudo apt update 
 sudo apt install python-pip
@@ -106,8 +106,7 @@ sudo apt-get update && \
 
 pip install pytictoc
 sudo pip install keras
-										</code>
-									</pre>
+</code></pre>
 
 									<h3>3. Download ROS packages</h3>
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
@@ -135,12 +134,13 @@ gedit   ~/.bashrc
 										(by opening a terminal, you can find your username e.g., <b style="color: rgb(0, 0, 255);">username</b>@ubuntu)
 									</p>
 									
-									<pre><code>
+<pre><code>
 
 #Add ROS catkin_ws and rosbuild_ws workspaces
 source /opt/ros/melodic/setup.bash
 export LD_LIBRARY_PATH=/opt/ros/melodic/lib:/opt/ros/melodic/include/moveit:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export ROS_PACKAGE_PATH=/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/catkin_ws:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/student_ws:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/rosbuild_ws:/opt/ros/melodic/include:${ROS_PACKAGE_PATH}
+export ROS_PACKAGE_PATH=/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/catkin_ws:/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/rosbuild_ws:/opt/ros/melodic/include:${ROS_PACKAGE_PATH}
+export ROS_PACKAGE_PATH=/home/<b style="color: rgb(0, 0, 255);">cognitiverobotics</b>/student_ws:${ROS_PACKAGE_PATH}
 
 export ROBOT=sim
 export PATH=~/bin:$PATH
@@ -157,7 +157,7 @@ export LC_NUMERIC="en_US.UTF-8"
 #This line forces the system to use python2 by default since the ROS works based on python2
 alias python='/usr/bin/python2.7'  
 											 
-									</code></pre>
+</code></pre>
 
 
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
@@ -215,7 +215,7 @@ chmod 777 setup_race_framework.sh
 									</div>
 
 									
-									<h4>Step 3. Install LevelDB </h4>
+<h4>Step 3. Install LevelDB </h4>
 <pre><code>
 mkdir -p /tmp/leveldb && cd /tmp/leveldb
 wget https://github.com/google/leveldb/archive/v1.14.tar.gz
