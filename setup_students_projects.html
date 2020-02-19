@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>System Setup for Studnets' projects</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="http://www.ai.rug.nl/hkasaei" target="_blank" class="logo"><strong> System setup for bachelor and master students  </strong> - Hamidreza Kasaei </a>
+								<ul class="icons">
+									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+								<section id="setup">
+									<div class="content">
+					
+									<span class="image main"><img src="images/banner.jpg" alt="" /></span>
+
+									<header class="main">
+										<h1>Setting up your workspace </h1>
+									</header>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										Before installing, have a glance through this guide and take note of the details for your platform. 
+										We install and test RACE cognitive robotic framework on 
+										<b><a href = "https://www.ubuntu.com/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> Ubuntu desktop (18.04 LTS)</a></b> and 
+										<b><a href = "http://wiki.ros.org/melodic" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> ROS Melodic</a></b>.
+										For your convenience, I provide a bash script to install the RACE framework and all necessary packages and dependencies.  
+										I also set up everything in a virtual machine that you can use through the project. 
+									</p>	
+										
+									
+									<hr class="major" />
+									<h2>Prerequisites</h2>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										There are certain steps that should be taken before installing the RACE framework to help make sure that you will have a successful installation.
+									</p>
+									<h3>1. Install operating system (Ubuntu 18.04 LTS)</h3>
+									<div class="box">
+										<p> Download and install <b><a href = "https://www.ubuntu.com/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> Ubuntu desktop (18.04 LTS)</a></b>
+										(only Ubuntu 18.04 LTS is compatible with ROS Melodic at the moment) </p>
+									</div>	
+
+									<h3>2. Install NVIDIA driver, CUDA 10, TensorFlow, Keras (Ubuntu 18.04 LTS)</h3>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										If you have already installed NVIDIA, CUDA and tensorFlow and Keras, skip this step!!!<br>
+									</p>
+<pre><code>
+<b style="color: rgb(0, 0, 255);"> ##### Tensorflow (TF) installation #####</b>
+sudo apt update 
+sudo apt install python-pip
+
+<b style="color: rgb(255, 0, 0);">[NOTE]: To install TF GPU version, use the following command: </b>
+pip install tensorflow-gpu
+
+<b style="color: rgb(255, 0, 0);">[NOTE]: If your laptop/computer does not have GPUs, use the following command to install CPU version of TF:</b>
+pip install tensorflow
+</code></pre>
+
+<pre><code>
+<b style="color: rgb(0, 0, 255);"> ##### Add NVIDIA package repositories if your system has GPU - If you are using CPU skip all the steps of this block!!! </b>
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+sudo apt-get update
+wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
+sudo apt-get update
+
+<b style="color: rgb(0, 0, 255);"> ##### Install NVIDIA driver</b>
+
+sudo apt-get install --no-install-recommends nvidia-driver-418
+
+<b style="color: rgb(255, 0, 0);"> ##### Reboot. Check that GPUs are visible using the command: </b> nvidia-smi
+
+<b style="color: rgb(0, 0, 255);"> ##### Install development and runtime libraries (~4GB)</b>
+
+sudo apt-get install --no-install-recommends \
+	cuda-10-0 \
+	libcudnn7=7.6.0.64-1+cuda10.0  \
+	libcudnn7-dev=7.6.0.64-1+cuda10.0
+
+<b style="color: rgb(0, 0, 255);"> ##### Install TensorRT. Requires that libcudnn7 is installed above.</b>
+
+sudo apt-get update && \
+		&& sudo apt-get install -y --no-install-recommends libnvinfer-dev
+</code></pre>
+
+<pre><code>
+<b style="color: rgb(0, 0, 255);"> ##### Install pytictoc and Keras API</b>
+
+pip install pytictoc
+sudo pip install keras=2.2.4
+</code></pre>
+
+									<h3>3. Download ROS packages</h3>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										Download <b style="color: rgb(0, 0, 255);">system_setup_for_studnets_projects.tar.xz</b> file from the shared_link availbale in the google_doc of your porject, and unzip it in your 
+										<b style="color: rgb(0, 0, 255);">/home </b>directory:
+									</p>
+<pre><code>
+tar xf system_setup.tar.xz -C ~/
+</code></pre>
+
+									<h3>4. Setting up environment</h3>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										
+										Open a terminal and type:
+									</p>
+<pre><code>
+gedit   ~/.bashrc
+</code></pre>
+																	
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										afterwards, copy and paste the following lines at the end of your .bashrc file.
+										This way, the ROS environment variables are added to your bash session every time a new shell is launched.
+										It should be noted that <b style="color: rgb(0, 0, 255);">projects</b> should be replaced by your computer username 
+										(by opening a terminal, you can find your username e.g., <b style="color: rgb(0, 0, 255);">username</b>@ubuntu)
+									</p>
+									
+<pre><code>
+#Add ROS catkin_ws and rosbuild_ws workspaces
+source /opt/ros/melodic/setup.bash
+export LD_LIBRARY_PATH=/opt/ros/melodic/lib:/opt/ros/melodic/include/moveit:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export ROS_PACKAGE_PATH=/home/<b style="color: rgb(0, 0, 255);">projects</b>/student_ws:${ROS_PACKAGE_PATH}
+
+export ROBOT=sim
+export PATH=~/bin:$PATH
+
+#The following line allows rosbuild packages to be depended to catkin packages
+#https://answers.ros.org/question/105231/how-to-make-rosbuild-package-depend-on-catkin-package/
+export PATH=/usr/lib/python2.7/:$PATH
+
+#This line is necessary for MoveIt!, otherwise the robot seems broken
+export LC_NUMERIC="en_US.UTF-8" 
+
+#This line forces the system to use python2 by default since the ROS works based on python2
+alias python='/usr/bin/python2.7'  											 
+</code></pre>
+
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+											Then close all your terminal.
+									</p>
+
+									<hr class="major" />
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<h2>Install RACE framework</h2>
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										Installing the RACE framework is a very simple process and takes less than ten minutes to complete.  We provide three methods 
+										to install the RACE framework. We strongly recommend you to use the first option. 
+									</p>
+
+									<h3 style="color:  rgb(255, 0, 0)"> Method 1: Install using bash script (Recommended) </h3>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										First, double check that the <b style="color: rgb(0,0, 255);"> setup_race_framework.txt</b> script exist in your <b style="color: rgb(0, 0, 255);">/home </b>directory.
+										It is worth mentioning that this script is part of <b style="color: rgb(0, 0, 255);">system_setup_for_studnets_projects.tar.xz</b> that you have downloaded in the previous step.
+									Then, open a terminal, change the .txt format to .sh and give appropriate permissions to the script and finally run it: </p>		
+<pre><code>
+mv	setup_race_framework.txt  setup_race_framework.sh
+chmod 777 setup_race_framework.sh 
+./setup_race_framework.sh
+</code></pre>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+											That’s it! RACE should now be installed. </br>
+											If you are intersted to know what does “chmod 777” mean, <a href = "https://www.maketecheasier.com/file-permissions-what-does-chmod-777-means/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> read this article</a>
+										</p>
+										
+								<!-- ******************************************************** -->
+								<!-- ******************************************************** -->
+
+								<h3 style="color:  rgb(255, 0, 0)"> Method 2: Step-by-step instructions [*] (not tested yet)</h3>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
+										Following are step-by-step instructions for installing  the RACE cognitive robtoic framewrok.
+									</p>
+																		
+									<h4>Step 1. Install ROS Melodic </h4>
+									<div class="box">
+										<p> <b><a href = "http://wiki.ros.org/melodic/Installation/Ubuntu" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> This tutorial </a></b>
+									walks you through installing ROS Melodic and setting up the ROS environment on your computer.</p>
+									</div>
+								
+									<h4>Step 2. Install required packages </h4>
+									<div class="box"> 
+										<b>sudo apt-get install </b> ros-melodic-desktop-full ros-melodic-hector-gazebo ros-melodic-openni-camera ros-melodic-roslisp python-rosinstall 
+										python-rdflib mercurial git openjdk-11-jdk libcgal-dev libpcl-dev libpstreams-dev libgraphviz-dev python-shapely python-networkx python-nltk 
+										python-pip libsnappy-dev ros-melodic-catkin python-catkin-tools libusb-dev libspnav-dev libbluetooth-dev libcwiid-dev 
+										ros-melodic-rviz-visual-tools build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4 ros-melodic-moveit
+									</div>
+
+									
+<h4>Step 3. Install LevelDB </h4>
+<pre><code>
+mkdir -p /tmp/leveldb && cd /tmp/leveldb
+wget https://github.com/google/leveldb/archive/v1.14.tar.gz
+tar -xzf v1.14.tar.gz
+cd leveldb-1.14/
+make -j4
+sudo cp -R include/leveldb /usr/local/include  
+sudo mv libleveldb.* /usr/local/lib
+sudo ldconfig
+</code></pre>
+
+								
+
+<h4>Step 4. Make all packages </h4>
+
+<pre><code>
+cd ~/student_ws 
+rosmake * --threads=1
+</code></pre>
+
+						
+
+									<hr class="major" />
+
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+
+									<h3 style="color:  rgb(255, 0, 0)"> Method 3: Download virtual machine </h3>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
+										In general, virtual machines are much slower than the primary operating system and therefore should be considered as the last option in your project, 
+										or just use it to get familiar with the framework. The virtual machine is available on your request. You can also come to my office (by appointment) 
+										to copy the virtual machine on your computer. <br>
+										
+										For this option, you also need to install <a href = "https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> VMware workstation 15 player </a>
+										We need around 5GB RAM and 30 GB HDD. At the later stages of the project, we need around 60GB for the Washington RGB-D dataset and ~10GB for ModelNet40 dataset.
+
+										[Password for the virtual machine is Crobot]
+									</p>
+									
+									<hr class="major" />
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<h2>Troubleshooting</h2>
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">
+										Here we provide a list of common errors and explain how to fix them. If the problem isn’t clear and you aren’t sure what to do next, contact TAs. 
+									<p>
+									
+									<div class="box">
+										<p><b style="color: rgb(0, 0, 255);">[ERROR] Could not get lock /var/lib/dpkg/lock’ </b> : 
+											dpkg has been locked by other programs -- wait for a while and try it again
+										</p>
+									</div>
+									
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+						<div class="inner">
+
+								<!-- Menu -->
+								<!-- <nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									
+									<ul>										
+										<li><a href="https://rugcognitiverobotics.github.io/#banner">Course Description</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#LO">Learning Objectives</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#PQ">Prerequisites</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#CF">Class Format</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#LT">List of Topic</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#CWQP">Coursework and Grading Policies</a></li>
+									</ul>
+								</nav> -->
+
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p> <b style="color: rgb(255, 0, 0);">Hamidreza Kasaei</b></p>
+									<ul class="contact">
+										<li class="fa-envelope-o">hamidreza.kasaei@rug.nl</li>
+										<li class="fa-dribbble"><a href="http://www.ai.rug.nl/hkasaei" target="_blank"> www.ai.rug.nl/hkasaei</a></li>
+										<li class="fa-home">Office #340, Bernoulliborg building, University of Groningen.</li>
+									</ul>
+									<!-- <p> <b style="color: rgb(255, 0, 0);">TBD</b> (Teaching Assistant)</p>
+									<ul class="contact">
+										<li class="fa-envelope-o">cognitiverobotic@gmail.com</li>
+										<li class="fa-envelope-o">TBD@student.rug.nl</li>
+									</ul> -->
+				
+								</section>
+
+						</div>
+					</div>
+
+			</div>
+
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
