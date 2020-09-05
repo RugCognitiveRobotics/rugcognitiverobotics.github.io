@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Cognitive Robotics Course</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="http://www.ai.rug.nl/hkasaei" target="_blank" class="logo"><strong>Cognitive Robotics Course (WMAI19001)</strong> - Hamidreza Kasaei </a>
+								<ul class="icons">
+									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+								<section id="setup">
+									<div class="content">
+					
+									<span class="image main"><img src="images/banner.jpg" alt="" /></span>
+
+									<header class="main">
+										<h1>Setting up your workspace </h1>
+									</header>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										Before installing, have a glance through this guide and take note of the details for your platform. 
+										We install and test RACE cognitive robotic framework on 
+										<b><a href = "https://www.ubuntu.com/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> Ubuntu desktop (18.04 LTS)</a></b> and 
+										<b><a href = "http://wiki.ros.org/melodic" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> ROS Melodic</a></b>.
+										For your convenience, we set up everything in a virtual machine. We also provide a bash script to install the RACE framework and all necessary packages and dependencies on your machine.  
+										
+									</p>	
+										
+									<hr class="major" />
+
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+
+									<h3 style="color:  rgb(255, 0, 0)"> Method 1: Download virtual machine (Recommended) </h3>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
+										In general, virtual machines are slower than the primary operating system. However, given the COVID-19 crisis, we think that the virtual machine should be considered as the first option in our 
+										course. The virtual machine is now available on Nestor. You can also contact TAs during the lab sessions to copy the virtual machine on your computer.
+									</p>
+
+									
+									<h3 style="color:  rgb(255, 0, 0)"> Method 2: Install using bash script  </h3>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
+										Installing the RACE framework is a very simple procedure and takes less than ten minutes to complete.  For most of the parts, we provide bach scripts to install everything on your machine automatically. 
+									</p>
+
+									<hr class="major" />
+									<h2>Prerequisites</h2>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										There are certain steps that should be taken before installing the RACE framework to help make sure that you will have a successful installation.
+									</p>
+									<h3>1. Install operating system (Ubuntu 18.04 LTS)</h3>
+									<div class="box">
+										<p> Download and install <b><a href = "https://www.ubuntu.com/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> Ubuntu desktop (18.04 LTS)</a></b>
+										(only Ubuntu 18.04 LTS is compatible with ROS Melodic at the moment) </p>
+									</div>	
+<!-- 
+<h3>2. Install TensorFlow, Keras (Ubuntu 18.04 LTS)</h3>
+<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+	If you have already installed TensorFlow (1.14 or 1.15) and Keras (2.3.1), skip this step!!!
+	It should be noted that we install the TensorFlow CPU version. This way, all students are able to run all the experiments on their laptops or PCs. 
+	These lines have also been included into the installation script that you will run it later! So you can skip this step!!!
+</p>
+<pre><code>
+
+<b style="color: rgb(0, 0, 255);"> ##### Tensorflow ##### </b>
+sudo apt update 
+sudo apt install python-pip
+pip install pytictoc
+pip install tensorflow==1.14
+
+<b style="color: rgb(0, 0, 255);"> ##### Install Keras #####</b>
+sudo pip install keras==2.3.1
+
+</code></pre> -->
+
+									<h3>2. Download ROS packages</h3>
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										Download <b style="color: rgb(0, 0, 255);">final_pacakges_for_assignmnet1.tar.xz</b> file from Nestor and unzip it in your 
+										<b style="color: rgb(0, 0, 255);">/home </b>directory:
+									</p>
+<pre><code>
+tar xf ffinal_pacakges_for_assignmnet1.tar.xz -C ~/
+</code></pre>
+
+									<h3>3. Setting up environment</h3>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										
+										Open a terminal and run the following commands. <b>Bear in mind that you just need this step once!</b>
+									</p>
+<pre><code>
+mv setup_bashrc.txt  setup_bashrc.sh
+chmod 777  setup_bashrc.sh
+./setup_bashrc.sh
+</code></pre>
+																	
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										It should be noted that after running these commands, the following lines will be appended to the end of your .bashrc file.
+										This way, the ROS environment variables are added to your bash session every time a new shell is launched.
+									</p>
+									
+<pre><code>
+
+source /opt/ros/melodic/setup.bash
+export LD_LIBRARY_PATH=/opt/ros/melodic/lib:/opt/ros/melodic/include/moveit:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export ROS_PACKAGE_PATH=$HOME/student_ws:/opt/ros/melodic/include:${ROS_PACKAGE_PATH}
+
+export ROBOT=sim
+export PATH=~/bin:$PATH
+
+export PATH=/usr/lib/python2.7/:$PATH
+export LC_NUMERIC=\"en_US.UTF-8\" 
+
+#This line forces the system to use python2 by default since the ROS works based on python2
+alias python='/usr/bin/python2.7'
+											
+</code></pre>
+
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+											Then close all your terminals.
+									</p>
+
+									<hr class="major" />
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<h2>Install RACE framework using bash script </h2>
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+
+									<!-- <h3 style="color:  rgb(255, 0, 0)"> Install using bash script (Recommended) </h3> -->
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+										First, download <b style="color: rgb(0,0, 255);"> setup_CoR_framework.txt</b> script from Nestor and move it to your <b style="color: rgb(0, 0, 255);">/home </b>directory.
+									</br>Then, open a terminal, change the .txt format to .sh and give appropriate permissions to the script and finally run it: </p>		
+<pre><code>
+mv setup_CoR_framework.txt  setup_CoR_framework.sh
+chmod 777 setup_CoR_framework.sh 
+./setup_CoR_framework.sh
+</code></pre>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+											That’s it! RACE should now be installed. </br>
+											If you are intersted to know what does “chmod 777” mean, <a href = "https://www.maketecheasier.com/file-permissions-what-does-chmod-777-means/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> read this article</a>
+										</p>
+										
+								<!-- ******************************************************** -->
+								<!-- ******************************************************** -->
+<!-- 
+								<h3 style="color:  rgb(255, 0, 0)"> Method 2: Step-by-step instructions [*] (not tested yet)</h3>
+
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">  
+										Following are step-by-step instructions for installing  the RACE cognitive robtoic framewrok.
+									</p>
+																		
+									<h4>Step 1. Install ROS Melodic </h4>
+									<div class="box">
+										<p> <b><a href = "http://wiki.ros.org/melodic/Installation/Ubuntu" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> This tutorial </a></b>
+									walks you through installing ROS Melodic and setting up the ROS environment on your computer.</p>
+									</div>
+								
+									<h4>Step 2. Install required packages </h4>
+									<div class="box"> 
+										<b>sudo apt-get install </b> ros-melodic-desktop-full ros-melodic-hector-gazebo ros-melodic-openni-camera ros-melodic-roslisp python-rosinstall 
+										python-rdflib mercurial git openjdk-11-jdk libcgal-dev libpcl-dev libpstreams-dev libgraphviz-dev python-shapely python-networkx python-nltk 
+										python-pip libsnappy-dev ros-melodic-catkin python-catkin-tools libusb-dev libspnav-dev libbluetooth-dev libcwiid-dev 
+										ros-melodic-rviz-visual-tools build-essential cmake doxygen libqt4-dev libqt4-opengl-dev libqglviewer-dev-qt4 ros-melodic-moveit
+									</div>
+
+									
+<h4>Step 3. Install LevelDB </h4>
+<pre><code>
+mkdir -p /tmp/leveldb && cd /tmp/leveldb
+wget https://github.com/google/leveldb/archive/v1.14.tar.gz
+tar -xzf v1.14.tar.gz
+cd leveldb-1.14/
+make -j4
+sudo cp -R include/leveldb /usr/local/include  
+sudo mv libleveldb.* /usr/local/lib
+sudo ldconfig
+</code></pre>
+
+								
+									<h4>Step 4. Building libfranka for Panda robot </h4>
+
+<pre><code>
+cd ~/
+sudo apt install build-essential libpoco-dev libeigen3-dev
+git clone --recursive https://github.com/frankaemika/libfranka
+cd libfranka && mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+</code></pre>
+
+									<h4>Step 5. Make all catkin_ws packages </h4>
+
+<pre><code>
+cd ~/catkin_ws 
+sudo rosdep init
+rosdep update
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y --skip-keys libfranka
+catkin_make -DCMAKE_BUILD_TYPE=Release -DFranka_DIR:PATH=/home/cognitiverobotics/libfranka/build
+</code></pre>
+
+									<h4>Step 6. Make all rosbuild_ws packages </h4>
+
+<pre><code>
+cd ~/rosbuild_ws/arm_navigation_msgs/
+rosmake --target=clean
+
+cd ~/rosbuild_ws/
+rosmake * --threads=1
+
+cd imperial_3d_object_tracking
+make clean && rm -r build && rm -r bin && rm -r lib
+make -j4
+</code></pre>
+
+									 -->
+									
+									<hr class="major" />
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<h2>Troubleshooting</h2>
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<!-- ******************************************************** -->
+									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt">
+										Here we provide a list of common errors and explain how to fix them. If the problem isn’t clear and you aren’t sure what to do next, contact TAs. 
+									<p>
+									
+									<div class="box">
+										<p><b style="color: rgb(0, 0, 255);">[ERROR] Could not get lock /var/lib/dpkg/lock’ </b> : 
+											dpkg has been locked by other programs -- wait for a while and try it again
+										</p>
+									</div>
+									
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+						<div class="inner">
+
+								<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									
+									<ul>										
+										<li><a href="https://rugcognitiverobotics.github.io/#banner">Course Description</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#LO">Learning Objectives</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#PQ">Prerequisites</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#CF">Class Format</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#LT">List of Topic</a></li>
+										<li><a href="https://rugcognitiverobotics.github.io/#CWQP">Coursework and Grading Policies</a></li>
+									</ul>
+								</nav>
+
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p> <b style="color: rgb(255, 0, 0);">Hamidreza Kasaei</b> (Course Coordinator)</p>
+									<ul class="contact">
+										<li class="fa-envelope-o">hamidreza.kasaei@rug.nl</li>
+										<li class="fa-dribbble"><a href="http://www.ai.rug.nl/hkasaei" target="_blank"> www.ai.rug.nl/hkasaei</a></li>
+										<li class="fa-home">Office #340, Bernoulliborg building, University of Groningen.</li>
+									</ul>
+									<p> <b style="color: rgb(255, 0, 0);">TBD</b> (Teaching Assistant)</p>
+									<ul class="contact">
+										<li class="fa-envelope-o">cognitiverobotic@gmail.com</li>
+										<li class="fa-envelope-o">TBD@student.rug.nl</li>
+									</ul>
+				
+								</section>
+
+						</div>
+					</div>
+
+			</div>
+
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
