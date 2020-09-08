@@ -115,7 +115,6 @@ tar xf final_pacakges_for_assignmnet1.tar.xz -C ~/
 										Open a terminal and run the following commands. <b>Bear in mind that you just need this step once!</b>
 									</p>
 <pre><code>
-mv setup_bashrc.txt  setup_bashrc.sh
 chmod 777  setup_bashrc.sh
 ./setup_bashrc.sh
 </code></pre>
@@ -160,12 +159,14 @@ alias python='/usr/bin/python2.7'
 										First, download <b style="color: rgb(0,0, 255);"> setup_CoR_framework.txt</b> script from Nestor and move it to your <b style="color: rgb(0, 0, 255);">/home </b>directory.
 									</br>Then, open a terminal, change the .txt format to .sh and give appropriate permissions to the script and finally run it: </p>		
 <pre><code>
-mv setup_CoR_framework.txt  setup_CoR_framework.sh
 chmod 777 setup_CoR_framework.sh 
 ./setup_CoR_framework.sh
+cd student_ws
+rosmake * --thread=1 
 </code></pre>
 
 									<p style="text-align: justify; color: rgb(0, 0, 0);font-size: 14pt"> 
+											It should be noted that --thread=1 is mainly needed for legacy PCs. 
 											That’s it! RACE should now be installed. </br>
 											If you are intersted to know what does “chmod 777” mean, <a href = "https://www.maketecheasier.com/file-permissions-what-does-chmod-777-means/" target="_blank" class="external text" title="" rel="nofollow" style="color: rgb(0,0, 255);"> read this article</a>
 										</p>
